@@ -1,3 +1,9 @@
+distro-info-data (0.41+deb10u2pexip1) pexip; urgency=medium
+
+  * Prepare Pexip packaging
+
+ -- Vincent Sanders <vince@pexip.com>  Tue, 21 Jul 2020 10:12:22 +0000
+
 distro-info-data (0.41+deb10u2) buster; urgency=medium
 
   * Update data to 0.44:

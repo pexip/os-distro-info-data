@@ -1,3 +1,16 @@
+distro-info-data (0.41+deb10u3pexip1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com> Mon, 07 Dec 2020 14:36:51 +0000
+
+distro-info-data (0.41+deb10u3) buster; urgency=medium
+
+  * Update data to 0.45:
+    - Add Ubuntu 21.04, Hirsute Hippo.
+
+ -- Stefano Rivera <stefanor@debian.org>  Mon, 02 Nov 2020 12:44:14 -0800
+
 distro-info-data (0.41+deb10u2pexip1) pexip; urgency=medium
 
   * Prepare Pexip packaging

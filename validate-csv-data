@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # Copyright (C) 2012, Benjamin Drung <bdrung@debian.org>
 #
@@ -14,47 +14,59 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+# pylint: disable=invalid-name
+# pylint: enable=invalid-name
+
 """Validates a given Debian or Ubuntu distro-info CSV file."""
 
 import csv
-import datetime
-import optparse
-import os
 import sys
 from datetime import date
 
+from lib.tools import convert_date, main
+
+
 _COLUMNS = {
-    "debian": ("version", "codename", "series", "created", "release", "eol"),
-    "ubuntu": ("version", "codename", "series", "created", "release", "eol",
-               "eol-server"),
+    "debian": (
+        "version",
+        "codename",
+        "series",
+        "created",
+        "release",
+        "eol",
+        "eol-lts",
+        "eol-elts",
+    ),
+    "ubuntu": (
+        "version",
+        "codename",
+        "series",
+        "created",
+        "release",
+        "eol",
+        "eol-server",
+        "eol-esm",
+    ),
 }
-_DATES = ("created", "release", "eol", "eol-server")
+_DATES = ("created", "release", "eol", "eol-server", "eol-esm", "eol-lts", "eol-elts")
 _EARLIER_DATES = (
     ("created", "release"),
     ("release", "eol"),
     ("eol", "eol-server"),
+    ("eol", "eol-esm"),
+    ("eol", "eol-lts"),
+    ("eol-lts", "eol-elts"),
 )
 _STRINGS = {
     "debian": ("codename", "series"),
     "ubuntu": ("version", "codename", "series"),
 }
 
-def convert_date(string):
-    """Convert a date string in ISO 8601 into a datetime object."""
-    if not string:
-        date = None
-    else:
-        parts = [int(x) for x in string.split("-")]
-        if len(parts) == 3:
-            (year, month, day) = parts
-            date = datetime.date(year, month, day)
-        else:
-            raise ValueError("Date not in ISO 8601 format.")
-    return date
 
 def error(filename, line, message, *args):
     """Prints an error message"""
-    print >> sys.stderr, "%s:%i: %s." % (filename, line, message % args)
+    print("%s:%i: %s." % (filename, line, message % args), file=sys.stderr)
+
 
 def validate(filename, distro):
     """Validates a given CSV file.
@@ -64,9 +76,9 @@ def validate(filename, distro):
     failures = 0
     content = open(filename).readlines()
     # Remove comments
-    for line in xrange(len(content)):
-        if content[line].startswith("#"):
-            content[line] = "\n"
+    for counter, line in enumerate(content):
+        if line.startswith("#"):
+            content[counter] = "\n"
     csvreader = csv.DictReader(content)
     for row in csvreader:
         # Check for missing columns
@@ -94,8 +106,7 @@ def validate(filename, distro):
                     row[column] = convert_date(row[column])
                 except ValueError:
                     msg = "Invalid date `%s' in column `%s'"
-                    error(filename, csvreader.line_num, msg, row[column],
-                           column)
+                    error(filename, csvreader.line_num, msg, row[column], column)
                     failures += 1
                     row[column] = None
         # Check required date columns
@@ -109,17 +120,27 @@ def validate(filename, distro):
             if date2 in row and row[date2]:
                 if date1 in row and row[date1]:
                     # date1 needs to be earlier than date2
-                    if row[date1] >= row[date2]:
-                        msg = ("Date %s of column `%s' needs to be later "
-                               "than %s of column `%s'")
-                        error(filename, csvreader.line_num, msg,
-                              row[date2].isoformat(), date2,
-                              row[date1].isoformat(), date1)
+                    if row[date1] > row[date2]:
+                        msg = (
+                            "Date %s of column `%s' needs to be >= "
+                            "than %s of column `%s'"
+                        )
+                        error(
+                            filename,
+                            csvreader.line_num,
+                            msg,
+                            row[date2].isoformat(),
+                            date2,
+                            row[date1].isoformat(),
+                            date1,
+                        )
                         failures += 1
                 else:
                     # date1 needs to be specified if date1 is specified
-                    msg = ("A date needs to be specified in column `%s' due "
-                           "to the given date in column `%s'")
+                    msg = (
+                        "A date needs to be specified in column `%s' due "
+                        "to the given date in column `%s'"
+                    )
                     error(filename, csvreader.line_num, msg, date1, date2)
                     failures += 1
         # Check that Ubuntu EOL lands on a weekday
@@ -136,35 +157,6 @@ def validate(filename, distro):
 
     return failures == 0
 
-def main():
-    """Main function with command line parameter parsing."""
-    script_name = os.path.basename(sys.argv[0])
-    usage = "%s -d|-u csv-file" % (script_name)
-    parser = optparse.OptionParser(usage=usage)
-
-    parser.add_option("-d", "--debian", dest="debian", action="store_true",
-                      default=False, help="validate a Debian CSV file")
-    parser.add_option("-u", "--ubuntu", dest="ubuntu", action="store_true",
-                      default=False, help="validate an Ubuntu CSV file")
-
-    (options, args) = parser.parse_args()
-
-    if len(args) == 0:
-        parser.error("No CSV file specified.")
-    elif len(args) > 1:
-        parser.error("Multiple CSV files specified: %s" % (", ".join(args)))
-
-    if len([x for x in [options.debian, options.ubuntu] if x]) != 1:
-        parser.error("You have to select exactly one of --debian, --ubuntu.")
-    if options.debian:
-        distro = "debian"
-    else:
-        distro = "ubuntu"
-
-    if validate(args[0], distro):
-        return 0
-    else:
-        return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(validate))

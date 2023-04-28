@@ -1,40 +1,73 @@
-distro-info-data (0.51+deb11u4) bullseye; urgency=medium
+distro-info-data (0.58) unstable; urgency=medium
 
-  * Update data to 0.58:
-    - Add Debian 14 "forky" with a vague creation date.
-    - Correct Ubuntu 23.04 release date to 2023-04-20.
-    - Tighten validate-csv-data heuristics, restricting Ubuntu EoLs to
-      Tue-Thursday.
-    - Document Ubuntu ESM overlap period (LP: #2003949)
-    - Add Ubuntu 23.10 Mantic Minotaur (LP: #2018028)
-    - Set the planned release date for Debian bookworm (and an EoL based on it).
-    - Adjust trixie's creation date to match bookworm's release.
+  * Add Ubuntu 23.10 Mantic Minotaur (LP: #2018028)
+  * Set the planned release date for Debian bookworm (and an EoL based on it).
+  * Adjust trixie's creation date to match bookworm's release.
 
- -- Stefano Rivera <stefanor@debian.org>  Sat, 29 Apr 2023 14:30:57 -0400
+ -- Stefano Rivera <stefanor@debian.org>  Fri, 28 Apr 2023 19:24:30 -0400
 
-distro-info-data (0.51+deb11u3) bullseye; urgency=medium
+distro-info-data (0.57) unstable; urgency=medium
 
-  * Update data to 0.55:
-    - Update Debian ELTS dates to ~10 years of support (Closes: #1014837)
-    - Correct release date of Debian 8 (jessie) to 2015-04-26
-    - Add dates for Ubuntu 23.04, Lunar Lobster (LP: #1993667)
+  [ Dimitri John Ledkov ]
+  * Document Ubuntu ESM overlap period (LP: #2003949)
 
- -- Stefano Rivera <stefanor@debian.org>  Sun, 30 Oct 2022 13:31:55 +0200
+  [ Stefano Rivera ]
+  * Tighten validate-csv-data heuristics, to limit Ubuntu EoLs to Tue-Thursday
+  * Correct error message for EoL date weekdays
+  * Ensure Ubuntu LTS releases have some overlap with ESM
+  * Correct exit code for EoL date weekdays
 
-distro-info-data (0.51+deb11u2) bullseye; urgency=medium
+  [ Benjamin Drung ]
+  * Format Python code with black
+  * Some refactoring in validate-csv-data for better readability
+  * Update year in debian/copyright
+  * Bump Standards-Version to 4.6.2
 
-  * Update data to 0.53:
-    - Add Ubuntu 22.10, Kinetic Kudu.
+ -- Benjamin Drung <bdrung@debian.org>  Wed, 22 Feb 2023 15:45:05 +0100
 
- -- Stefano Rivera <stefanor@debian.org>  Mon, 25 Apr 2022 20:32:17 -0400
+distro-info-data (0.56) unstable; urgency=medium
 
-distro-info-data (0.51+deb11u1) bullseye; urgency=medium
+  [ Stefano Rivera ]
+  * Add Debian 14 "forky" with a vague creation date.
 
-  * Update data to 0.52:
-    - Extend Ubuntu 14.04 and 16.04 ESM out to 10 years in total.
-    - Add Ubuntu 22.04 LTS, Jammy Jellyfish.
+  [ Brian Murray ]
+  * Correct Update 23.04 release date to 2023-04-20
 
- -- Stefano Rivera <stefanor@debian.org>  Thu, 09 Dec 2021 09:40:48 -0400
+ -- Benjamin Drung <bdrung@debian.org>  Mon, 31 Oct 2022 14:51:00 +0100
+
+distro-info-data (0.55) unstable; urgency=medium
+
+  [ Stefano Rivera ]
+  * Mark python3 Build-Depend as <!nocheck>.
+
+  [ Thomas Bechtold ]
+  * Add dates for Ubuntu 23.04, Lunar Lobster (LP: #1993667)
+
+ -- Benjamin Drung <bdrung@debian.org>  Fri, 28 Oct 2022 11:09:05 +0200
+
+distro-info-data (0.54) unstable; urgency=medium
+
+  * Update Debian ELTS dates to ~10 years of support (Closes: #1014837)
+  * Correct release date of Debian 8 (jessie) to 2015-04-26
+  * Restrict maximum line length to 79 characters
+  * Fix all pylint complaints (except too-many-branches)
+  * Switch to debhelper 13
+  * Bump Standards-Version to 4.6.1 (no changes needed)
+
+ -- Benjamin Drung <bdrung@debian.org>  Sat, 23 Jul 2022 17:31:19 +0200
+
+distro-info-data (0.53) unstable; urgency=medium
+
+  * Add Ubuntu 22.10, Kinetic Kudu.
+
+ -- Stefano Rivera <stefanor@debian.org>  Mon, 25 Apr 2022 11:48:33 -0400
+
+distro-info-data (0.52) unstable; urgency=medium
+
+  * Extend Ubuntu 14.04 and 16.04 ESM out to 10 years in total.
+  * Add Ubuntu 22.04 LTS, Jammy Jellyfish.
+
+ -- Stefano Rivera <stefanor@debian.org>  Fri, 15 Oct 2021 06:01:00 -0700
 
 distro-info-data (0.51) unstable; urgency=medium
 

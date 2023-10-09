@@ -21,7 +21,7 @@
 
 import csv
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 from lib.tools import convert_date, main
 
@@ -150,10 +150,25 @@ def validate(filename, distro):
                     continue
                 if not eol_date:
                     continue
-                if eol_date.weekday() > 5 and eol_date >= date(2021, 1, 1):
-                    msg = '%s for %s lands on a weekend (%s)'
-                    error(filename, csvreader.line_num, msg, column,
-                          row['codename'], date)
+                if eol_date >= date(2021, 1, 1):
+                    if eol_date.weekday() == 0 or eol_date.weekday() >= 4:
+                        msg = (
+                            f"{column} for {row['codename']}"
+                            f" lands outside Tuesday-Thursday ({eol_date})"
+                        )
+                        error(filename, csvreader.line_num, msg)
+                        failures += 1
+            if row["version"].endswith("LTS") and row["release"] >= date(2018, 1, 1):
+                eol_date = row["eol"]
+                assert eol_date == row["eol-server"]
+                june = eol_date.replace(day=1, month=6)
+                if june - eol_date > timedelta(days=7):
+                    msg = (
+                        f"eol for {row['codename']}"
+                        f" is missing ESM overlap period ({eol_date})"
+                    )
+                    error(filename, csvreader.line_num, msg)
+                    failures += 1
 
     return failures == 0
 

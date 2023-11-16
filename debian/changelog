@@ -1,3 +1,9 @@
+distro-info-data (0.58pexip1) pexip-bookworm; urgency=medium
+
+  * Initial bookworm build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 16 Nov 2023 09:57:57 +0000
+
 distro-info-data (0.58) unstable; urgency=medium
 
   * Add Ubuntu 23.10 Mantic Minotaur (LP: #2018028)

@@ -1,3 +1,9 @@
+distro-info-data (0.58+deb12u2+pexip24u1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 01 Jul 2024 08:46:36 +0000
+
 distro-info-data (0.58+deb12u2) bookworm; urgency=medium
 
   * Update data to 0.61:
@@ -248,13 +254,13 @@ distro-info-data (0.41+deb10u4pexip1) pexip; urgency=medium
 
   * New upstream release
 
- -- Steve McIntyre <steve.mcintyre@pexip.com> Mon, 11 Oct 2021 15:00:10 +0100
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Mon, 11 Oct 2021 15:00:10 +0100
 
 distro-info-data (0.41+deb10u3pexip1) pexip; urgency=medium
 
   * New upstream release
 
- -- Steve McIntyre <steve.mcintyre@pexip.com> Mon, 07 Dec 2020 14:36:51 +0000
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Mon, 07 Dec 2020 14:36:51 +0000
 
 distro-info-data (0.41+deb10u2pexip1) pexip; urgency=medium
 

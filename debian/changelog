@@ -1,3 +1,16 @@
+distro-info-data (0.58+deb12u3+pexip24u1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Thu, 14 Nov 2024 15:10:01 +0000
+
+distro-info-data (0.58+deb12u3) bookworm; urgency=medium
+
+  * Update data to 0.63:
+    - Add Ubuntu 25.04 "Plucky Puffin" (LP: #2084572)
+
+ -- Stefano Rivera <stefanor@debian.org>  Wed, 23 Oct 2024 18:58:20 -0700
+
 distro-info-data (0.58+deb12u2+pexip24u1) pexip; urgency=medium
 
   * New upstream release

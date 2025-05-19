@@ -1,3 +1,17 @@
+distro-info-data (0.58+deb12u4+pexip24u1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Mon, 19 May 2025 11:41:35 +0100
+
+distro-info-data (0.58+deb12u4) bookworm; urgency=medium
+
+  * Update data to 0.64:
+    * Add Debian 15 "Duke".
+    * Add Ubuntu 25.10 "Questing Quokka".
+
+ -- Stefano Rivera <stefanor@debian.org>  Fri, 25 Apr 2025 10:42:02 -0400
+
 distro-info-data (0.58+deb12u3+pexip24u1) pexip; urgency=medium
 
   * New upstream release

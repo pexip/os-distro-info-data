@@ -1,3 +1,9 @@
+distro-info-data (0.66+pexip25u1) pexip-trixie; urgency=medium
+
+  * New upstream release
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 31 Jul 2025 13:17:42 +0100
+
 distro-info-data (0.66) unstable; urgency=medium
 
   * Correct estimation for trixie ELTS EoL to 10 years total support.

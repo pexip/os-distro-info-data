@@ -1,8 +1,8 @@
-distro-info-data (0.66+pexip25u1) pexip-trixie; urgency=medium
+distro-info-data (0.66+deb13u1+pexip25u1) pexip-trixie; urgency=medium
 
   * New upstream release
 
- -- Mark Hymers <mark.hymers@pexip.com>  Thu, 31 Jul 2025 13:17:42 +0100
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 01 Dec 2025 12:27:37 +0000
 
 distro-info-data (0.66+deb13u1) trixie; urgency=medium
 
@@ -11,6 +11,12 @@ distro-info-data (0.66+deb13u1) trixie; urgency=medium
     - Add Ubuntu 26.04 LTS "Resolute Raccoon" (LP: #2126961)
 
  -- Stefano Rivera <stefanor@debian.org>  Sat, 18 Oct 2025 16:43:12 +0200
+
+distro-info-data (0.66+pexip25u1) pexip-trixie; urgency=medium
+
+  * New upstream release
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 31 Jul 2025 13:17:42 +0100
 
 distro-info-data (0.66) unstable; urgency=medium
 
